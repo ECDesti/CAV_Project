@@ -222,10 +222,7 @@ def load_data(dir = "../DistanceData/"):
     targets = np.array(targets, dtype=np.float32)
     return data, targets
 
-# The loss function which penalises predictions of 0
-def conditional_zero_penalty_loss(predictions, targets, penalty_weight=1.0):
+# The loss function 
+def loss_function(predictions, targets):
     mse_loss = F.mse_loss(predictions, targets)
-    # Only penalize zero predictions when target is non-zero
-    incorrect_zeros = (predictions.abs() < 1e-3) & (targets.abs() > 1e-3)
-    zero_penalty = penalty_weight * torch.mean(incorrect_zeros.float())
-    return mse_loss + zero_penalty
+    return mse_loss

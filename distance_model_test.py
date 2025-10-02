@@ -8,7 +8,7 @@ import shutil
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
-from distance_model import DistanceEstimation, load_data, conditional_zero_penalty_loss
+from distance_model import DistanceEstimation, load_data, loss_function
 
 # Function to write to both files
 def write_to_files(text, timestamped_file, latest_file):
@@ -43,7 +43,7 @@ shutil.copy2(distanceEstimation.objectCheckpointPath, object_timestamped_checkpo
 
 # Counters for tracking filtered data
 total_samples = 0
-criterion = conditional_zero_penalty_loss
+criterion = loss_function
 
 # Initialize lists to store predictions and actual values for analysis
 predictions = []

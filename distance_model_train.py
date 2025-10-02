@@ -6,7 +6,7 @@ Script to be used to train the models
 
 # The required imports
 import glob
-from distance_model import DistanceEstimation, load_data, conditional_zero_penalty_loss
+from distance_model import DistanceEstimation, load_data, loss_function
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -29,7 +29,7 @@ laneLowestLoss = float('inf')
 if distanceEstimation.laneCheckpoint is not None:
     laneLowestLoss = distanceEstimation.laneCheckpoint['loss']
 targetEpochs = 1000
-lossFunction = conditional_zero_penalty_loss
+lossFunction = loss_function
 
 # Loads the training data and split it into lanes and objects
 data, targets = load_data()
